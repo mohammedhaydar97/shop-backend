@@ -1,7 +1,7 @@
 import asyncHandler from "../middleware/asyncHandler.js";
 import User from "./../model/userModel.js";
 import jwt from 'jsonwebtoken';
-
+import generateToken from '../utils/generateToken.js';
 
 // @desc    Auth user & get token
 // @route   POST /api/users/auth
