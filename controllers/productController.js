@@ -1,3 +1,4 @@
+import mongoose  from "mongoose";
 import asyncHandler from "../middleware/asyncHandler.js";
 import Product from "./../model/productModel.js";
 
@@ -17,4 +18,23 @@ const getProductById = asyncHandler(async (req, res) => {
 });
 
 
-export {getProducts , getProductById}
+const createProduct = asyncHandler(async (req, res) => {
+  const randomUserId = new mongoose.Types.ObjectId(); 
+  const product = new Product({
+    name: req.body.name,
+    price: 0,
+    user: randomUserId,
+    image: req.body.image,
+    brand: req.body.brand,
+    category: req.body.category,
+    countInStock: 0,
+    numReviews: 0,
+    description: 'Sample description',
+  });
+
+  const createdProduct = await product.save();
+  res.status(201).json(createdProduct);
+});
+
+
+export {getProducts , getProductById ,createProduct}

@@ -13,12 +13,12 @@ connectDB();
 const app = express();
 
 //Body parser middleware
+app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
 app.use(cookieParser());
 
-app.use(cors());
 
 app.use('/api/products',productsRoutes)
 app.use('/api/users',userRoutes)
