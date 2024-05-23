@@ -1,11 +1,19 @@
-import express from "express";
+import cors from 'cors';
 import dotenv from 'dotenv';
-import cors from 'cors'; 
+import express from "express";
 import connectDB from "./config/Db.js";
-import productsRoutes from './routes/prodctRoute.js'
-import userRoutes from './routes/userRoutes.js'
+import adRouter from './routes/adRouter.js';
+import champRouter from './routes/champRouter.js';
+import courtRoute from './routes/courtRoutes.js';
+import productsRoutes from './routes/prodctRoute.js';
+import reservation from './routes/reservationRoute.js';
+import trainerRoutes from './routes/trainerRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+
+
+
 import cookieParser from "cookie-parser";
-import {errorHandler,notFound} from './middleware/errorMiddleware.js'
+import { errorHandler, notFound } from './middleware/errorMiddleware.js';
 
 
 dotenv.config();
@@ -22,6 +30,16 @@ app.use(cookieParser());
 
 app.use('/api/products',productsRoutes)
 app.use('/api/users',userRoutes)
+app.use('/api/trainer',trainerRoutes)
+app.use('/api/court',courtRoute)
+app.use('/api/ad',adRouter)
+app.use('/api/champ',champRouter)
+app.use('/api/reservation',reservation)
+
+
+
+
+
 
 
 const port = process.env.PORT || 5000;
